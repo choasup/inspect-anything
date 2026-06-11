@@ -40,8 +40,9 @@ src/inspect_one/
   schema.py            # 五类任务原语的统一结构化 schema（坐标归一化 xyxy）
   teacher/             # 教师层：Teacher 抽象 + Qwen3-VL OpenAI 兼容客户端 + JSON 解析
   flywheel/sampler.py  # 价值采样器：六路信号打分 + 场景配额 + 时间衰减
+  data/                # 训练数据层：统一样本格式 + COCO 转换器 + 来源比例混合器
   bench/               # InspectBench：指标(AP/MAE/F1/FPR@recall) + runner + 发布门禁
-tests/                 # 26 个单元测试，无需 GPU
+tests/                 # 31 个单元测试，无需 GPU（模型推理/训练在外部 GPU 环境）
 ```
 
 ```bash
