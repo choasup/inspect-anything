@@ -1,0 +1,4 @@
+{"id": "bench-retail-0001", "subset": "retail", "task": "ground", "image": "retail/shelf_1001.jpg", "query": "可乐 330ml", "target": {"boxes": [{"x1": 0.1, "y1": 0.1, "x2": 0.3, "y2": 0.3}]}}
+{"id": "bench-retail-0002", "subset": "retail", "task": "count", "image": "retail/shelf_1002.jpg", "query": "货架上的瓶装水", "target": {"count": 12}}
+{"id": "bench-security-0001", "subset": "security", "task": "judge", "image": "security/site_1003.jpg", "rule": "施工区域内所有人员必须佩戴安全帽", "target": {"passed": false}}
+{"id": "bench-industrial-0001", "subset": "industrial", "task": "ground", "image": "industrial/part_1004.jpg", "query": "表面划痕", "target": {"boxes": [{"x1": 0.42, "y1": 0.36, "x2": 0.55, "y2": 0.4}]}}

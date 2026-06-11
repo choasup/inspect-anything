@@ -3,3 +3,9 @@ __pycache__/
 .pytest_cache/
 build/
 dist/
+
+# 数据文件不入库，只保留说明与样例
+data/*
+!data/README.md
+!data/examples/
+bench/images/
