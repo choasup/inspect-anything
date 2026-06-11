@@ -39,7 +39,7 @@
 
 ## 4. 标注：三级流水线，人只看 5%
 
-1. **L1 自动预标注（全量）**：Grounded-SAM-2 流水线（Grounding DINO → SAM2 分割/跟踪）+ 教师 VLM 产结构化标注。视频片段标注成本由 SAM2 跟踪摊薄。
+1. **L1 自动预标注（全量）**：SAM3 单模型产框/掩码/视频跟踪（替代原 Grounding DINO + SAM2 两级流水线，链路更短、质量更高）+ 教师 VLM 产结构化语义标注。视频片段标注成本由 SAM3 跟踪摊薄。
 2. **L2 教师交叉仲裁（~20%）**：对 L1 低一致性样本，用更强教师（235B/闭源旗舰）重标并对比；两师一致即采纳为银标。
 3. **L3 人工审核（~5%）**：只看 L2 仍分歧的 + 用户改判的 + 每批 2% 随机抽检（用于监控 L1/L2 质量漂移）。人审产出金标，同时**每次改判自动生成一条 DPO 偏好对**（chosen=人审结果，rejected=模型原输出）。
 
@@ -56,7 +56,7 @@
 新场景没有回流数据时：
 
 1. 教师 VLM 零样本直接服务（贵但能用），同时积累真实输入分布；
-2. 用客户已有素材（棚格图、SKU 库、历史缺陷照片）+ 教师/Grounding DINO 做离线伪标注，人审校正后成为种子检测集；
+2. 用客户已有素材（棚格图、SKU 库、历史缺陷照片）+ 教师 VLM/SAM3 做离线伪标注，人审校正后成为种子检测集；
 3. 质检线缺陷样本不足时，用 inpainting 把种子缺陷形态合成到正常件图像上扩增（合成数据只进训练、不进评测）；新词表（SKU/缺陷类别）离线编译即可热更新检测头；
 4. 2-4 周后数据量达到阈值，切换到学生模型，飞轮进入正循环。
 
@@ -73,3 +73,4 @@
 - [Adaptive Data Flywheel: MAPE Control Loops for AI Improvement (arXiv)](https://arxiv.org/html/2510.27051v1)
 - [Label Your Data: AutoDistill — Automate Dataset Labeling](https://labelyourdata.com/articles/data-annotation/autodistill)
 - [Autodistill: Grounded SAM 2 Base Model](https://docs.autodistill.com/base_models/grounded-sam-2/)
+- [SAM 3: Segment Anything with Concepts (arXiv)](https://arxiv.org/html/2511.16719v1)
