@@ -59,3 +59,4 @@ pip install -e ".[dev]" && pytest
 - [02 自研模型架构设计](docs/02-model-design.md) — inspect-one 单骨干双头统一架构、检测头与 LLM 头的分工、速度优化手段、训练配方。
 - [03 数据飞轮机制](docs/03-data-flywheel.md) — 困难样本挖掘、教师自动标注、人审分层、再训练触发、效果回归的完整闭环设计。
 - [04 迭代路线图与评测体系](docs/04-roadmap.md) — 四阶段落地计划、InspectBench 评测集设计、速度/效果双目标。
+- [05 首轮训练 Runbook](docs/05-first-run.md) — 数据准备 → 冒烟训练 → 全量训练 → 学生 vs 教师评测的逐步操作手册（ms-swift + SwanLab）。
