@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "inspect-one"
+version = "0.0.1"
+description = "Unified image understanding for retail, security and industrial inspection: task primitives, teacher clients, data flywheel, and InspectBench."
+requires-python = ">=3.10"
+dependencies = ["pydantic>=2.5"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

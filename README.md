@@ -33,6 +33,25 @@
 └─────────────────────────────────────────────────────┘
 ```
 
+## 代码结构
+
+```
+src/inspect_one/
+  schema.py            # 五类任务原语的统一结构化 schema（坐标归一化 xyxy）
+  teacher/             # 教师层：Teacher 抽象 + Qwen3-VL OpenAI 兼容客户端 + JSON 解析
+  flywheel/sampler.py  # 价值采样器：六路信号打分 + 场景配额 + 时间衰减
+  bench/               # InspectBench：指标(AP/MAE/F1/FPR@recall) + runner + 发布门禁
+tests/                 # 26 个单元测试，无需 GPU
+```
+
+```bash
+pip install -e ".[dev]" && pytest
+```
+
+评测数据集为 JSONL（格式见 `bench/runner.py` 文档串），模型以 `(sample: dict) -> dict`
+的 callable 接入，学生/教师/baseline 共用同一评测入口；`regression_gate` 实现
+「任一场景子集劣化 >1pt 即阻断」的发布门禁。
+
 ## 文档导航
 
 - [01 多模态架构调研与优势总结](docs/01-architecture-survey.md) — 当前最好的开源多模态架构（Qwen3-VL、InternVL3、FastVLM、SmolVLM 等）逐一拆解，可借鉴的设计结论。
